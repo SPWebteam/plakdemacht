@@ -1,0 +1,83 @@
+<?php
+
+function spcanvas_menu() {
+  $items = array();
+  $items['plakdemacht'] = array(
+    'title' => 'SP Canvas',
+    'type' => MENU_NORMAL_ITEM,
+    'access callback' => 'spcanvas_access',
+  );
+  return $items;
+}
+
+function spcanvas_access() {
+  return TRUE;
+}
+
+function spcanvas_page_delivery_callback_alter(&$delivery_callback){
+  $router_item = menu_get_item();
+  if ($router_item['path'] === 'canvas') {
+    $delivery_callback = 'spcanvas_content';
+  }
+}
+
+function spcanvas_content () {
+  $base_path = drupal_get_path('module', 'spcanvas');
+
+  $content = <<<END
+<html>
+<head>
+<title>SP Canvas</title>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:900" rel="stylesheet">
+<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="{$base_path}/reimg/reimg.js"></script>
+<link rel="stylesheet" type="text/css" href="{$base_path}/spcanvas.css">
+</head>
+<body>
+  <div id="container_left">
+    <div id="canvaswrap">
+      <div id="canvaswrap-inner">
+        <canvas id="memecanvas" style="border:0px;">Sorry, canvas not supported</canvas>
+      </div>
+    </div>
+    <img src="{$base_path}/images/roze-geel.jpg" id="bg1" style='display:none' />
+    <img src="{$base_path}/images/geel-rood.jpg" id="bg2" style='display:none' />
+    <img src="{$base_path}/images/groen-roze.jpg" id="bg3" style='display:none' />
+    <img src="{$base_path}/images/geel-roze.jpg" id="bg4" style='display:none' />
+    <img src="{$base_path}/images/rood-geel.jpg" id="bg5" style='display:none' />
+    <img src="{$base_path}/images/roze-groen.jpg" id="bg6" style='display:none' />
+  </div>
+
+  <div id="container_right">
+    <form>
+      <div id="">
+        <h2>Typ hier uw tekst (<span id="charsLeft"></span> chars left)</h2>
+        <textarea type='text' id="custom-text" onblur="onBlur(this)" onfocus="onFocus(this)" onkeyup="doTransform()" oninput="doTransform()" onpaste="doTransform()" />Typ hier uw tekst</textarea>
+      </div>
+
+      <div id="thumb_container">
+        <h2>Kies achtergrond</h2>
+        <div class="thumb" id="thumb1"><img src="{$base_path}/images/roze-geel-thumb.jpg" alt="1"></div>
+        <div class="thumb" id="thumb2"><img src="{$base_path}/images/geel-rood-thumb.jpg" alt="2"></div>
+        <div class="thumb" id="thumb3"><img src="{$base_path}/images/groen-roze-thumb.jpg" alt="3"></div>
+        <div class="thumb" id="thumb4"><img src="{$base_path}/images/geel-roze-thumb.jpg" alt="4"></div>
+        <div class="thumb" id="thumb5"><img src="{$base_path}/images/rood-geel-thumb.jpg" alt="5"></div>
+        <div class="thumb" id="thumb6"><img src="{$base_path}/images/roze-groen-thumb.jpg" alt="6"></div>
+      </div>
+
+      <input type="checkbox" id="checkboxAgreed" />
+      <label for="checkboxAgreed">Hierbij ga ik ermee akkoord dat de SP de door mij<br>gemaakte afbeelding mag gebruiken.</label>
+      <br><br>
+      <div id="download_container" class="false">
+        <div>
+          <a id="download_button" href="#" onclick="downloadCanvasAsPng()">Download poster</a>
+        </div>
+      </div>
+    </form>
+    </div>
+  <script src="{$base_path}/spcanvas.js"></script>
+</body>
+END;
+
+  print $content;
+}
