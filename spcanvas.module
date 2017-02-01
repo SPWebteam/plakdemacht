@@ -5,19 +5,17 @@ function spcanvas_menu() {
   $items['plakdemacht'] = array(
     'title' => 'SP Canvas',
     'type' => MENU_NORMAL_ITEM,
-    'access callback' => 'spcanvas_access',
+    'access callback' => 'user_is_logged_in',
   );
   return $items;
-}
-
-function spcanvas_access() {
-  return TRUE;
 }
 
 function spcanvas_page_delivery_callback_alter(&$delivery_callback){
   $router_item = menu_get_item();
   if ($router_item['path'] === 'plakdemacht') {
-    $delivery_callback = 'spcanvas_content';
+    if (user_is_logged_in()) {
+      $delivery_callback = 'spcanvas_content';
+    }
   }
 }
 
