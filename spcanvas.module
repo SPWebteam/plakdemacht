@@ -16,7 +16,7 @@ function spcanvas_access() {
 
 function spcanvas_page_delivery_callback_alter(&$delivery_callback){
   $router_item = menu_get_item();
-  if ($router_item['path'] === 'canvas') {
+  if ($router_item['path'] === 'plakdemacht') {
     $delivery_callback = 'spcanvas_content';
   }
 }
@@ -51,7 +51,7 @@ function spcanvas_content () {
   <div id="container_right">
     <form>
       <div id="">
-        <h2>Typ hier uw tekst (<span id="charsLeft"></span> chars left)</h2>
+        <h2>Typ hier uw tekst (<span id="charsLeft"></span> karakters over)</h2>
         <textarea type='text' id="custom-text" onblur="onBlur(this)" onfocus="onFocus(this)" onkeyup="doTransform()" oninput="doTransform()" onpaste="doTransform()" />Typ hier uw tekst</textarea>
       </div>
 
