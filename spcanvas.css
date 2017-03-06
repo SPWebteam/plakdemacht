@@ -47,11 +47,13 @@ form {
   left: 0;
   width: 100%;
   height: 100%;
+  text-align: center;
 }
 
 #memecanvas {
-  width: 100%;
+  width: auto;
   height: 100%;
+  max-height: 90vh;
   top:0;
 }
 
@@ -78,23 +80,27 @@ form {
 
 #download_container {
   width: 100%;
-  height: 64px;
-  float: left;
   display:none;
+  float: none; 
+  clear: both;
 }
 
 #download_container.true {
   display:block;
 }
 
-a {
+#download_container {
+  margin-top: 2em;
+}
+
+.download-button {
   font-family: 'HelveticaInseratLTPro', 'Source Sans Pro', sans-serif;
   text-transform: uppercase;
   color: #ff4fa5;
   text-decoration: none;
   font-size: 20px;
   background-color: #ffe000;
-  padding: 5px 10px;
+  padding: .71em 1.4em;
 }
 
 a:hover {
@@ -114,4 +120,8 @@ a:hover {
 
 textarea {
   font-size: 18px;
+}
+
+.preload {
+  display: none;
 }

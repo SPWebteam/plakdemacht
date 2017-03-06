@@ -25,8 +25,7 @@ function spcanvas_content () {
   $content = <<<END
 <html>
 <head>
-<title>SP Canvas</title>
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:900" rel="stylesheet">
+<title>SP Plak de Macht - Postermaker</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="{$base_path}/reimg/reimg.js"></script>
 <link rel="stylesheet" type="text/css" href="{$base_path}/spcanvas.css">
@@ -38,44 +37,43 @@ function spcanvas_content () {
         <canvas id="memecanvas" style="border:0px;">Sorry, canvas not supported</canvas>
       </div>
     </div>
-    <img src="{$base_path}/images/roze-geel.jpg" id="bg1" style='display:none' />
-    <img src="{$base_path}/images/geel-rood.jpg" id="bg2" style='display:none' />
-    <img src="{$base_path}/images/groen-roze.jpg" id="bg3" style='display:none' />
-    <img src="{$base_path}/images/geel-roze.jpg" id="bg4" style='display:none' />
-    <img src="{$base_path}/images/rood-geel.jpg" id="bg5" style='display:none' />
-    <img src="{$base_path}/images/roze-groen.jpg" id="bg6" style='display:none' />
+    <div class="preload">
+      <img src="{$base_path}/images/roze-geel.jpg"  id="bg1" />
+      <img src="{$base_path}/images/geel-rood.jpg"  id="bg2" />
+      <img src="{$base_path}/images/groen-roze.jpg" id="bg3" />
+      <img src="{$base_path}/images/geel-roze.jpg"  id="bg4" />
+      <img src="{$base_path}/images/rood-geel.jpg"  id="bg5" />
+      <img src="{$base_path}/images/roze-groen.jpg" id="bg6" />
+    </div>
   </div>
 
   <div id="container_right">
     <form>
-      <div id="">
-        <h2>Typ hier uw tekst (<span id="charsLeft"></span> karakters over)</h2>
-        <textarea type='text' id="custom-text" onblur="onBlur(this)" onfocus="onFocus(this)" onkeyup="doTransform()" oninput="doTransform()" onpaste="doTransform()" />Typ hier uw tekst</textarea>
+      <div id="introduction">
+        <h2>Jouw slogan:</h2>
+        <textarea type='text' id="custom-text" onblur="onBlur(this)" onfocus="onFocus(this)" onkeyup="doTransform()" oninput="doTransform()" onpaste="doTransform()" />Type het hier ...</textarea>
+        <p>(nog <span id="charsLeft"></span> tekens)</p>
       </div>
 
       <div id="thumb_container">
-        <h2>Kies achtergrond</h2>
-        <div class="thumb" id="thumb1"><img src="{$base_path}/images/roze-geel-thumb.jpg" alt="1"></div>
-        <div class="thumb" id="thumb2"><img src="{$base_path}/images/geel-rood-thumb.jpg" alt="2"></div>
-        <div class="thumb" id="thumb3"><img src="{$base_path}/images/groen-roze-thumb.jpg" alt="3"></div>
-        <div class="thumb" id="thumb4"><img src="{$base_path}/images/geel-roze-thumb.jpg" alt="4"></div>
-        <div class="thumb" id="thumb5"><img src="{$base_path}/images/rood-geel-thumb.jpg" alt="5"></div>
-        <div class="thumb" id="thumb6"><img src="{$base_path}/images/roze-groen-thumb.jpg" alt="6"></div>
+        <h2>Kies je kleurencombi</h2>
+        <div class="thumb" data-bg="bg1" data-textcolor="#ffe000"><img src="{$base_path}/images/roze-geel-thumb.jpg" alt="1"></div>
+        <div class="thumb" data-bg="bg2" data-textcolor="#ea0000"><img src="{$base_path}/images/geel-rood-thumb.jpg" alt="2"></div>
+        <div class="thumb" data-bg="bg3" data-textcolor="#ff4fa5"><img src="{$base_path}/images/groen-roze-thumb.jpg" alt="3"></div>
+        <div class="thumb" data-bg="bg4" data-textcolor="#ff4fa5"><img src="{$base_path}/images/geel-roze-thumb.jpg" alt="4"></div>
+        <div class="thumb" data-bg="bg5" data-textcolor="#ffe000"><img src="{$base_path}/images/rood-geel-thumb.jpg" alt="5"></div>
+        <div class="thumb" data-bg="bg6" data-textcolor="#00e000"><img src="{$base_path}/images/roze-groen-thumb.jpg" alt="6"></div>
       </div>
 
       <input type="checkbox" id="checkboxAgreed" />
-      <label for="checkboxAgreed">Hierbij ga ik ermee akkoord dat de SP de door mij<br>gemaakte afbeelding mag gebruiken.</label>
-      <br><br>
+      <label for="checkboxAgreed">De SP mag de door mij gemaakte poster ook gebruiken.</label>
       <div id="download_container" class="false">
-        <div>
-          <a id="download_button" href="#" onclick="downloadCanvasAsPng()">Download poster</a>
-        </div>
+        <a id="download_button" class="download-button" href="#" onclick="downloadCanvasAsPng()">Download je poster</a>
       </div>
     </form>
     </div>
   <script src="{$base_path}/spcanvas.js"></script>
 </body>
 END;
-
   print $content;
 }
